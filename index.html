@@ -2,190 +2,131 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Nexor Hub - Scripts</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Nexor Hub - Terminal Scripts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-
+    <link href="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             background-color: #000;
-            color: #fff;
-            font-family: 'Anton', Arial, sans-serif;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
         }
 
         .container {
-            width: 100%;
-            max-width: 950px;
+            max-width: 900px;
+            margin: auto;
             padding: 20px;
-            margin: 20px;
-            background-color: #0d0d0d;
-            border: 2px solid #333;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
         }
 
         header {
             text-align: center;
-            padding: 20px 0;
-            margin-bottom: 15px;
-            background-color: #111;
-            border-bottom: 2px solid #333;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         header h1 {
-            font-size: 3em;
-            letter-spacing: 3px;
             text-transform: uppercase;
-            color: #fff;
-            word-wrap: break-word;
+            font-size: 2em;
         }
 
         .buttons {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin: 15px 0;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
         .btn {
-            padding: 10px 20px;
-            background-color: #fff;
-            color: #000;
-            border: none;
-            border-radius: 8px;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 8px 15px;
             text-decoration: none;
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
         }
 
         .btn:hover {
-            background-color: #e0e0e0;
+            background-color: #00ff00;
+            color: #000;
         }
 
         .status {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 1.1em;
+            font-size: 1em;
         }
 
-        .green { color: lime; }
-        .blue { color: cyan; }
-
         .search-bar {
-            position: relative;
-            display: flex;
-            justify-content: center;
             margin-bottom: 20px;
+            position: relative;
         }
 
         .search-input {
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 2px solid #444;
             width: 100%;
-            max-width: 500px;
-            background-color: #1a1a1a;
-            color: #fff;
-            font-family: 'Anton', Arial, sans-serif;
-            font-size: 1em;
+            padding: 10px 40px 10px 10px;
+            background-color: #111;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            font-family: inherit;
         }
 
         .search-bar i {
             position: absolute;
-            right: 20px;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            stroke: #ccc;
+            stroke: #00ff00;
         }
 
         .script-box {
-            background-color: #1a1a1a;
-            border: 2px solid #444;
-            margin-bottom: 20px;
+            border: 1px solid #00ff00;
             padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
         }
 
         .script-box h3 {
             margin-top: 0;
-            font-size: 1.3em;
-            color: #fff;
+            font-size: 1.2em;
             text-transform: uppercase;
-            word-wrap: break-word;
         }
 
         .code {
             background-color: #000;
             color: #00ff00;
             padding: 10px;
+            border: 1px solid #00ff00;
             overflow-x: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            border-radius: 6px;
-            font-family: monospace;
-            margin-top: 10px;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
 
         .copy-btn {
-            background-color: #fff;
-            color: #000;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
+            margin-top: 10px;
+            background: none;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 5px 10px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
             font-weight: bold;
-            transition: all 0.2s ease;
         }
 
         .copy-btn:hover {
-            background-color: #ddd;
+            background-color: #00ff00;
+            color: #000;
         }
 
         @media (max-width: 600px) {
-            .container {
-                margin: 10px;
-                padding: 15px;
+            .btn {
+                padding: 6px 10px;
+                font-size: 0.8em;
             }
 
             header h1 {
-                font-size: 1.8em;
-                padding: 10px;
-            }
-
-            .btn {
-                padding: 8px 16px;
-                font-size: 0.9em;
-            }
-
-            .copy-btn {
-                font-size: 0.9em;
-            }
-
-            .search-input {
-                width: 90%;
-            }
-
-            .search-bar i {
-                right: 10px;
-            }
-
-            .script-box {
-                padding: 10px;
+                font-size: 1.5em;
             }
         }
     </style>
@@ -193,52 +134,39 @@
 <body>
 
 <div class="container">
-
     <header>
-        <h1>NEXOR HUB SCRIPTS</h1>
+        <h1>NEXOR HUB TERMINAL</h1>
     </header>
 
     <div class="buttons">
-        <a href="https://discord.com" target="_blank" class="btn">
-            <i data-lucide="message-circle"></i> Discord
-        </a>
-        <a href="https://youtube.com" target="_blank" class="btn">
-            <i data-lucide="youtube"></i> YouTube
-        </a>
+        <a href="https://discord.com" target="_blank" class="btn">Discord</a>
+        <a href="https://youtube.com" target="_blank" class="btn">YouTube</a>
     </div>
 
     <div class="status">
-        <span class="green">🟢 Working</span>
-        <span class="blue">🔵 Testing</span>
+        STATUS: <span style="color:lime;">ONLINE</span>
     </div>
 
-    <!-- Campo de Busca -->
     <div class="search-bar">
-        <input type="text" id="searchInput" onkeyup="filterScripts()" placeholder="Pesquisar script..." class="search-input">
+        <input type="text" id="searchInput" onkeyup="filterScripts()" placeholder="> Pesquisar script..." class="search-input">
         <i data-lucide="search"></i>
     </div>
 
-    <!-- Scripts -->
     <div class="script-box">
-        <h3>Aimbot/ESP All Games (Keyless) 🟢</h3>
-        <button class="copy-btn" onclick="copyToClipboard('script1')">
-            <i data-lucide="clipboard-copy"></i> Copiar
-        </button>
+        <h3>Aimbot / ESP (Keyless)</h3>
         <div class="code" id="script1">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/aimbot.lua"))()
         </div>
+        <button class="copy-btn" onclick="copyToClipboard('script1')">Copiar</button>
     </div>
 
     <div class="script-box">
-        <h3>Dead Rails (Keyless) 🔵</h3>
-        <button class="copy-btn" onclick="copyToClipboard('script2')">
-            <i data-lucide="clipboard-copy"></i> Copiar
-        </button>
+        <h3>Dead Rails (Keyless)</h3>
         <div class="code" id="script2">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/deadrails.lua"))()
         </div>
+        <button class="copy-btn" onclick="copyToClipboard('script2')">Copiar</button>
     </div>
-
 </div>
 
 <script>
