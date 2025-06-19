@@ -149,7 +149,7 @@
 </div>
 
 <div class="search-bar">
-    <input type="text" id="searchInput" onkeyup="filterScripts()" placeholder="Pesquisar script..." class="search-input">
+    <input type="text" id="searchInput" onkeyup="filterScripts()" placeholder="Digite aqui..." class="search-input">
     <i data-lucide="search"></i>
 </div>
 
@@ -179,7 +179,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/
     function copyToClipboard(id) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text).then(() => {
-            alert("Script copiado!");
+            alert("Script copiado, volte no roblox para executar.");
         });
     }
 
