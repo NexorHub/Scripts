@@ -2,17 +2,146 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Scripts Lua</title>
+    <title>Nexor Hub - Scripts</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            box-shadow: 0 2px 10px red;
+        }
+
+        header h1 {
+            color: red;
+            font-size: 2em;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: transparent;
+            border: 2px solid red;
+            color: red;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: red;
+            color: #000;
+        }
+
+        .status {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .status span {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .green { color: lime; }
+        .yellow { color: yellow; }
+        .blue { color: cyan; }
+        .red { color: red; }
+
+        .script-box {
+            background-color: #1a1a1a;
+            border-left: 5px solid red;
+            margin: 20px auto;
+            padding: 15px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 10px red;
+        }
+
+        .script-box h3 {
+            color: white;
+        }
+
+        .code {
+            background-color: #000;
+            color: #00ff00;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            margin-top: -30px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Minha página de Scripts Lua</h1>
-    <p>Aqui estão alguns scripts legais para Roblox e Lua:</p>
 
-    <pre>
-local Players = game:GetService("Players")
-print("Script Exemplo")
-    </pre>
+<header>
+    <h1>NEXOR HUB SCRIPTS</h1>
+</header>
 
-    <a href="index.html">Voltar para Home</a>
+<div class="buttons">
+    <a href="#" class="btn">Get Key</a>
+    <a href="#" class="btn">Get Scripts</a>
+    <a href="#" class="btn">Discord</a>
+</div>
+
+<div class="status">
+    <span class="green">🟢 Working</span>
+    <span class="yellow">🟡 Some Issues</span>
+    <span class="blue">🔵 Testing</span>
+    <span class="red">🔴 Not Working</span>
+</div>
+
+<div class="script-box">
+    <h3>Aimbot/ESP All Games (Keyless) 🟢</h3>
+    <button class="copy-btn" onclick="copyToClipboard('script1')">Copiar</button>
+    <div class="code" id="script1">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/aimbot.lua"))()
+    </div>
+</div>
+
+<div class="script-box">
+    <h3>Dead Rails (Keyless) 🔴</h3>
+    <button class="copy-btn" onclick="copyToClipboard('script2')">Copiar</button>
+    <div class="code" id="script2">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/deadrails.lua"))()
+    </div>
+</div>
+
+<script>
+    function copyToClipboard(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(function() {
+            alert("Script copiado!");
+        }, function(err) {
+            alert("Erro ao copiar.");
+        });
+    }
+</script>
+
 </body>
 </html>
