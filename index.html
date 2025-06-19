@@ -2,140 +2,164 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Nexor Hub - Explorar Scripts</title>
+    <title>Nexor Hub - Scripts</title>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         body {
-            margin: 0;
+            background-color: #000000;
+            color: #ffffff;
             font-family: Arial, sans-serif;
-            background-color: #0e0e0e;
-            color: #fff;
+            margin: 0;
+            padding: 0;
         }
 
         header {
-            background-color: #121212;
-            padding: 15px;
             text-align: center;
-            box-shadow: 0 2px 10px #00ff88;
+            padding: 20px;
+            background-color: #111111;
+            box-shadow: 0 2px 10px #333333;
         }
 
         header h1 {
-            color: #00ff88;
-            margin: 0;
+            color: white;
+            font-size: 2em;
         }
 
-        .container {
-            padding: 20px;
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
         }
 
-        .script-card {
-            background-color: #1c1c1c;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 10px #00ff88;
-        }
-
-        .script-card img {
-            width: 100%;
-            height: auto;
-        }
-
-        .script-content {
-            padding: 15px;
-        }
-
-        .script-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #00ff88;
-        }
-
-        .tags {
-            margin-top: 8px;
-        }
-
-        .tag {
-            display: inline-block;
-            background-color: #333;
-            color: #00ff88;
-            padding: 3px 8px;
-            margin-right: 5px;
-            border-radius: 5px;
-            font-size: 0.9em;
-        }
-
-        .status-verificado {
-            color: #00ff88;
-            font-weight: bold;
-        }
-
-        .views {
-            font-size: 0.85em;
-            color: #999;
-        }
-
-        .free-label {
-            color: #00ff88;
-            font-weight: bold;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #00ff88;
-            color: #000;
+        .btn {
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border: 2px solid #ffffff;
+            color: #000000;
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: #000000;
+        }
+
+        .status {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .status span {
+            margin: 0 10px;
             font-weight: bold;
         }
 
+        .green { color: lime; }
+        .yellow { color: yellow; }
+        .blue { color: cyan; }
+        .red { color: red; }
+
+        .script-box {
+            background-color: #1a1a1a;
+            border-left: 5px solid white;
+            margin: 20px auto;
+            padding: 15px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 10px #333333;
+        }
+
+        .script-box h3 {
+            color: white;
+        }
+
+        .code {
+            background-color: #000000;
+            color: #00ff00;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            margin-top: -30px;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Nexor Hub Scripts</h1>
-    <p>Explorar Scripts (70)</p>
+    <h1>NEXOR HUB SCRIPTS</h1>
 </header>
 
-<div class="container">
-
-    <!-- Card Script 1 -->
-    <div class="script-card">
-        <img src="https://via.placeholder.com/800x400.png?text=Steal+a+Capybara+Script" alt="Steal A Capybara">
-        <div class="script-content">
-            <div class="script-title">Steal A Capybara SCRIPT</div>
-            <div class="status-verificado">✔️ Verificado</div>
-            <div class="views">👁️ 84 Visualizações</div>
-            <div class="tags">
-                <span class="tag">stealacapybarascript</span>
-                <span class="tag">robloxscript</span>
-            </div>
-            <p class="free-label">Grátis</p>
-            <a href="#" class="button">Ver Script</a>
-        </div>
-    </div>
-
-    <!-- Card Script 2 -->
-    <div class="script-card">
-        <img src="https://via.placeholder.com/800x400.png?text=Infinite+Mining+Incremental" alt="Infinite Mining">
-        <div class="script-content">
-            <div class="script-title">Infinite Mining Incremental SCRIPT Auto Farm</div>
-            <div class="status-verificado">✔️ Verificado</div>
-            <div class="views">👁️ 49 Visualizações</div>
-            <div class="tags">
-                <span class="tag">infinitemining</span>
-                <span class="tag">autofarm</span>
-            </div>
-            <p class="free-label">Grátis</p>
-            <a href="#" class="button">Ver Script</a>
-        </div>
-    </div>
-
-    <!-- Adicione mais scripts abaixo copiando o bloco acima -->
-
+<div class="buttons">
+    <a href="https://discord.com" target="_blank" class="btn">
+        <i data-lucide="discord"></i> Discord
+    </a>
+    <a href="https://youtube.com" target="_blank" class="btn">
+        <i data-lucide="youtube"></i> YouTube
+    </a>
 </div>
+
+<div class="status">
+    <span class="green">🟢 Working</span>
+    <span class="yellow">🟡 Some Issues</span>
+    <span class="blue">🔵 Testing</span>
+    <span class="red">🔴 Not Working</span>
+</div>
+
+<div class="script-box">
+    <h3>Aimbot/ESP All Games (Keyless) 🟢</h3>
+    <button class="copy-btn" onclick="copyToClipboard('script1')">Copiar</button>
+    <div class="code" id="script1">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/aimbot.lua"))()
+    </div>
+</div>
+
+<div class="script-box">
+    <h3>Dead Rails (Keyless) 🔴</h3>
+    <button class="copy-btn" onclick="copyToClipboard('script2')">Copiar</button>
+    <div class="code" id="script2">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/deadrails.lua"))()
+    </div>
+</div>
+
+<script>
+    // Ativar Lucide Icons
+    lucide.createIcons();
+
+    function copyToClipboard(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(function() {
+            alert("Script copiado!");
+        }, function(err) {
+            alert("Erro ao copiar.");
+        });
+    }
+</script>
 
 </body>
 </html>
