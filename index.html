@@ -79,6 +79,9 @@
             margin-top: 0;
             font-size: 1.1em;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .status-dot {
@@ -86,7 +89,6 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            margin-left: 8px;
             background-color: lime;
         }
 
@@ -154,7 +156,7 @@
 </div>
 
 <div class="script-box">
-    <h3>Aimbot / ESP All Games (Keyless) <span class="status-dot"></span></h3>
+    <h3><span class="status-dot"></span> Aimbot / ESP All Games (Keyless)</h3>
     <button class="copy-btn" onclick="copyToClipboard('script1')">
         <i data-lucide="clipboard-copy"></i> Copiar
     </button>
@@ -164,7 +166,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/
 </div>
 
 <div class="script-box">
-    <h3>Dead Rails (Keyless) <span class="status-dot"></span></h3>
+    <h3><span class="status-dot"></span> Dead Rails (Keyless)</h3>
     <button class="copy-btn" onclick="copyToClipboard('script2')">
         <i data-lucide="clipboard-copy"></i> Copiar
     </button>
