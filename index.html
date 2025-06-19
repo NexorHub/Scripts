@@ -23,8 +23,8 @@
         .container {
             width: 100%;
             max-width: 950px;
-            padding: 20px;
-            margin: 20px;
+            padding: 15px;
+            margin: 10px;
             background-color: #0d0d0d;
             border: 2px solid #333;
             border-radius: 12px;
@@ -33,7 +33,7 @@
 
         header {
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
             margin-bottom: 15px;
             background-color: #111;
             border-bottom: 2px solid #333;
@@ -44,18 +44,19 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             color: #fff;
+            word-wrap: break-word;
         }
 
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
             margin: 15px 0;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 25px;
+            padding: 10px 20px;
             background-color: #fff;
             color: #000;
             border: none;
@@ -64,7 +65,7 @@
             font-weight: bold;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: all 0.2s ease;
         }
 
@@ -88,6 +89,7 @@
         .blue { color: cyan; }
 
         .search-bar {
+            position: relative;
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
@@ -97,7 +99,7 @@
             padding: 10px 15px;
             border-radius: 8px;
             border: 2px solid #444;
-            width: 80%;
+            width: 100%;
             max-width: 500px;
             background-color: #1a1a1a;
             color: #fff;
@@ -107,8 +109,9 @@
 
         .search-bar i {
             position: absolute;
-            margin-left: -35px;
-            margin-top: 12px;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
             stroke: #ccc;
         }
 
@@ -116,29 +119,30 @@
             background-color: #1a1a1a;
             border: 2px solid #444;
             margin-bottom: 20px;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
         }
 
         .script-box h3 {
             margin-top: 0;
-            font-size: 1.4em;
+            font-size: 1.3em;
             color: #fff;
             text-transform: uppercase;
+            word-wrap: break-word;
         }
 
         .code {
             background-color: #000;
             color: #00ff00;
-            padding: 12px;
+            padding: 10px;
             overflow-x: auto;
             white-space: pre-wrap;
             word-wrap: break-word;
             border-radius: 6px;
             font-family: monospace;
             margin-top: 10px;
-            font-size: 1em;
+            font-size: 0.95em;
         }
 
         .copy-btn {
@@ -167,10 +171,11 @@
 
         @media (max-width: 600px) {
             header h1 {
-                font-size: 2em;
+                font-size: 1.8em;
+                padding: 10px;
             }
             .btn {
-                padding: 10px 20px;
+                padding: 8px 16px;
                 font-size: 0.9em;
             }
             .copy-btn {
@@ -178,6 +183,9 @@
             }
             .search-input {
                 width: 90%;
+            }
+            .search-bar i {
+                right: 10px;
             }
         }
     </style>
