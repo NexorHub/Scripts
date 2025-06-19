@@ -2,37 +2,25 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Nexor Hub - Terminal Scripts</title>
+    <title>Nexor Hub Scripts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             background-color: #000;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
+            color: #fff;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 10px;
         }
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        header {
+        h1 {
             text-align: center;
-            border-bottom: 1px solid #00ff00;
-            padding-bottom: 10px;
+            font-size: 2.5em;
             margin-bottom: 20px;
         }
 
-        header h1 {
-            text-transform: uppercase;
-            font-size: 2em;
-        }
-
-        .buttons {
+        .button-area {
             display: flex;
             justify-content: center;
             gap: 10px;
@@ -41,131 +29,145 @@
         }
 
         .btn {
-            color: #00ff00;
-            border: 1px solid #00ff00;
-            padding: 8px 15px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9em;
-            transition: background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #00ff00;
+            background-color: #fff;
             color: #000;
-        }
-
-        .status {
-            text-align: center;
-            margin-bottom: 20px;
+            padding: 10px 16px;
+            border-radius: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             font-size: 1em;
         }
 
         .search-bar {
-            margin-bottom: 20px;
             position: relative;
+            margin-bottom: 20px;
         }
 
         .search-input {
             width: 100%;
-            padding: 10px 40px 10px 10px;
-            background-color: #111;
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            font-family: inherit;
+            padding: 12px 20px;
+            border-radius: 15px;
+            border: none;
+            font-size: 1.2em;
+            background-color: #fff;
+            color: #000;
         }
 
-        .search-bar i {
+        .search-bar i, .search-bar svg {
             position: absolute;
-            right: 10px;
+            right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            stroke: #00ff00;
+            stroke: #000;
         }
 
         .script-box {
-            border: 1px solid #00ff00;
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 1px solid #800000;
+            border-radius: 12px;
             padding: 15px;
             margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
         }
 
         .script-box h3 {
             margin-top: 0;
-            font-size: 1.2em;
-            text-transform: uppercase;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-left: 8px;
+            background-color: lime;
         }
 
         .code {
             background-color: #000;
             color: #00ff00;
             padding: 10px;
-            border: 1px solid #00ff00;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.95em;
             overflow-x: auto;
-            font-size: 0.9em;
         }
 
         .copy-btn {
-            margin-top: 10px;
-            background: none;
-            border: 1px solid #00ff00;
-            color: #00ff00;
+            background-color: red;
+            color: #fff;
+            border: none;
             padding: 5px 10px;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: bold;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 8px;
         }
 
-        .copy-btn:hover {
-            background-color: #00ff00;
-            color: #000;
+        .copy-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: #fff;
         }
 
-        @media (max-width: 600px) {
-            .btn {
-                padding: 6px 10px;
-                font-size: 0.8em;
+        @media (min-width: 700px) {
+            h1 {
+                font-size: 3em;
             }
 
-            header h1 {
-                font-size: 1.5em;
+            .btn {
+                font-size: 1.1em;
+            }
+
+            .search-input {
+                font-size: 1.3em;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>NEXOR HUB TERMINAL</h1>
-    </header>
+<h1>Nexor Hub</h1>
 
-    <div class="buttons">
-        <a href="https://discord.com" target="_blank" class="btn">Discord</a>
-        <a href="https://youtube.com" target="_blank" class="btn">YouTube</a>
-    </div>
+<div class="button-area">
+    <a href="#" class="btn">
+        <i data-lucide="key"></i> Key Premium
+    </a>
+    <a href="#" class="btn">
+        <i data-lucide="message-circle"></i> Discord
+    </a>
+</div>
 
-    <div class="status">
-        STATUS: <span style="color:lime;">ONLINE</span>
-    </div>
+<div class="search-bar">
+    <input type="text" id="searchInput" onkeyup="filterScripts()" placeholder="Pesquisar script..." class="search-input">
+    <i data-lucide="search"></i>
+</div>
 
-    <div class="search-bar">
-        <input type="text" id="searchInput" onkeyup="filterScripts()" placeholder="> Pesquisar script..." class="search-input">
-        <i data-lucide="search"></i>
-    </div>
-
-    <div class="script-box">
-        <h3>Aimbot / ESP (Keyless)</h3>
-        <div class="code" id="script1">
+<div class="script-box">
+    <h3>Aimbot / ESP All Games (Keyless) <span class="status-dot"></span></h3>
+    <button class="copy-btn" onclick="copyToClipboard('script1')">
+        <i data-lucide="clipboard-copy"></i> Copiar
+    </button>
+    <div class="code" id="script1">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/aimbot.lua"))()
-        </div>
-        <button class="copy-btn" onclick="copyToClipboard('script1')">Copiar</button>
     </div>
+</div>
 
-    <div class="script-box">
-        <h3>Dead Rails (Keyless)</h3>
-        <div class="code" id="script2">
+<div class="script-box">
+    <h3>Dead Rails (Keyless) <span class="status-dot"></span></h3>
+    <button class="copy-btn" onclick="copyToClipboard('script2')">
+        <i data-lucide="clipboard-copy"></i> Copiar
+    </button>
+    <div class="code" id="script2">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/deadrails.lua"))()
-        </div>
-        <button class="copy-btn" onclick="copyToClipboard('script2')">Copiar</button>
     </div>
 </div>
 
@@ -174,17 +176,14 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/seunome/seurepo/main/
 
     function copyToClipboard(id) {
         const text = document.getElementById(id).innerText;
-        navigator.clipboard.writeText(text).then(function() {
+        navigator.clipboard.writeText(text).then(() => {
             alert("Script copiado!");
-        }, function(err) {
-            alert("Erro ao copiar.");
         });
     }
 
     function filterScripts() {
         const input = document.getElementById('searchInput').value.toLowerCase();
         const boxes = document.getElementsByClassName('script-box');
-
         for (let i = 0; i < boxes.length; i++) {
             const title = boxes[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
             boxes[i].style.display = title.includes(input) ? '' : 'none';
