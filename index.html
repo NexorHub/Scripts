@@ -5,7 +5,6 @@
     <title>Nexor Hub - Scripts</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <style>
         body {
             background-color: #000;
@@ -19,28 +18,29 @@
 
         .container {
             width: 100%;
-            max-width: 850px;
+            max-width: 900px;
             padding: 20px;
             margin: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-            background-color: #111;
+            background-color: #0d0d0d;
+            border: 2px solid #222;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(150, 0, 0, 0.3);
         }
 
         header {
             text-align: center;
             padding: 30px 0;
-            background-color: #1a1a1a;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
             margin-bottom: 25px;
+            background-color: #1a1a1a;
+            border-bottom: 3px solid #8b0000;
         }
 
         header h1 {
             font-size: 3em;
-            letter-spacing: 2px;
-            color: white;
-            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 0 10px #8b0000;
         }
 
         .buttons {
@@ -56,25 +56,28 @@
             background-color: #fff;
             color: #000;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1em;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s ease;
         }
 
         .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            background-color: #8b0000;
+            color: #fff;
         }
 
         .btn svg {
             width: 20px;
             height: 20px;
             stroke: #000;
+        }
+
+        .btn:hover svg {
+            stroke: #fff;
         }
 
         .status {
@@ -88,22 +91,23 @@
             font-weight: bold;
         }
 
-        .green { color: lime; }
-        .blue { color: cyan; }
+        .green { color: #90ee90; }
+        .blue { color: #00ced1; }
 
         .script-box {
             background-color: #1a1a1a;
-            border: 2px solid white;
+            border: 2px solid #444;
             margin-bottom: 30px;
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
         }
 
         .script-box h3 {
             margin-top: 0;
-            font-size: 1.4em;
-            text-shadow: 0 0 5px #fff;
+            font-size: 1.5em;
+            color: #fff;
+            text-shadow: 0 0 5px #8b0000;
         }
 
         .code {
@@ -120,28 +124,27 @@
         }
 
         .copy-btn {
-            background-color: #fff;
-            color: #000;
+            background-color: #8b0000;
+            color: #fff;
             border: none;
             padding: 8px 12px;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
             font-weight: bold;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s ease;
         }
 
         .copy-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 3px 8px rgba(255, 255, 255, 0.2);
+            background-color: #b22222;
         }
 
         .copy-btn svg {
             width: 18px;
             height: 18px;
-            stroke: #000;
+            stroke: #fff;
         }
 
         @media (max-width: 600px) {
@@ -150,9 +153,6 @@
             }
             .btn {
                 padding: 10px 20px;
-                font-size: 0.9em;
-            }
-            .copy-btn {
                 font-size: 0.9em;
             }
         }
