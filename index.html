@@ -628,11 +628,12 @@
             
             mouseMoveTimeout = setTimeout(() => {
                 const cards = document.querySelectorAll('.script-card');
-            cards.forEach(card => {
-                if (!card.matches(':hover')) {
-                    card.style.transform = 'translateY(0)';
-                }
-            });
+                cards.forEach(card => {
+                    if (!card.matches(':hover')) {
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            }, 100); // ← tempo de debounce
         });
 
         // Melhorar performance em dispositivos móveis
