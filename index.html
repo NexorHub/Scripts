@@ -614,5 +614,16 @@ loadstring(game:HttpGet("https://pastefy.app/ArsenalScript"))()
 
         // Entry animation
         window.addEventListener('load', () => {
-            const cards = document.querySelectorA
+            const cards = document.querySelectorAll('.script-card');
+              cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(50px)';
+                    card.style.animation = 'fadeIn 0.6s ease forwards';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
             
