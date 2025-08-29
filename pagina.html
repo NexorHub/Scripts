@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexor Hub - Universal Script</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --text-tertiary: #666666;
+            --border-color: #333333;
+            --accent-color: #ffffff;
+            --hover-color: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="white"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --bg-tertiary: #e8e8e8;
+            --text-primary: #000000;
+            --text-secondary: #555555;
+            --text-tertiary: #999999;
+            --border-color: #cccccc;
+            --accent-color: #000000;
+            --hover-color: rgba(0, 0, 0, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        /* Grid tecnológico de fundo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--hover-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--hover-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        /* Linhas de código animadas */
+        .code-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .code-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--text-secondary), transparent);
+            animation: codeScan 8s infinite linear;
+        }
+
+        @keyframes codeScan {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateX(100vw); opacity: 0; }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-tertiary);
+            transform: scale(1.05);
+        }
+
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            text-shadow: 0 0 50px var(--shadow-color);
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--text-primary), transparent);
+            animation: underlineGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes underlineGlow {
+            from { opacity: 0.3; width: 50px; }
+            to { opacity: 1; width: 150px; }
+        }
+
+        .subtitle { 
+            font-size: 1.4rem; 
+            color: var(--text-secondary); 
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--hover-color), transparent);
+            animation: scanEffect 3s infinite;
+        }
+
+        @keyframes scanEffect {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--text-primary), transparent, var(--text-primary));
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotateY(180deg);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+        }
+
+        .script-section {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            position: relative;
+            animation: slideInUp 1s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .script-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .script-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-family: Arial, sans-serif;
+        }
+
+        .script-code {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            word-break: break-all;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .script-code::before {
+            content: '> nexor_hub_universal.lua';
+            position: absolute;
+            top: -30px;
+            left: 0;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .script-code:hover {
+            border-color: var(--text-primary);
+            box-shadow: 0 0 20px var(--shadow-color);
+        }
+
+        .copy-btn {
+            background: var(--accent-color);
+            border: 2px solid var(--border-color);
+            padding: 15px 30px;
+            border-radius: 12px;
+            color: var(--bg-primary);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--hover-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px var(--shadow-color);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--text-primary), transparent);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-tertiary);
+            background: var(--bg-secondary);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        /* Terminal effect */
+        .terminal-line {
+            font-family: 'Courier New', monospace;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terminal-line::before {
+            content: '>';
+            color: var(--text-primary);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .logo { font-size: 2.5rem; }
+            .subtitle { font-size: 1.1rem; }
+            .container { padding: 15px; }
+            .script-section { padding: 25px; }
+            .theme-toggle { top: 10px; right: 10px; }
+        }
+
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--text-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i data-feather="monitor" id="theme-icon"></i>
+        <span id="theme-text">Escuro</span>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Linhas de código animadas -->
+    <div class="code-lines" id="codeLines"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">NEXOR HUB</h1>
+            <p class="subtitle">Plataforma de Scripts Universal</p>
+            <div class="status-badge">
+                <i data-feather="activity"></i>
+                Sistema Online
+            </div>
+        </header>
+
+        <!-- Estatísticas -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-target="150">000</div>
+                <div class="stat-label">Jogos Suportados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="50">00</div>
+                <div class="stat-label">K+ Usuários Ativos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="99">00</div>
+                <div class="stat-label">% Disponibilidade</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="1800000">0</div>
+                <div class="stat-label">Execuções</div>
+            </div>
+        </div>
+
+        <!-- Terminal Info -->
+        <section style="margin: 40px 0;">
+            <div class="terminal-line">Inicializando Sistema Nexor Hub Universal...</div>
+            <div class="terminal-line">Carregando módulos de compatibilidade...</div>
+            <div class="terminal-line">Estabelecendo conexão segura...</div>
+            <div class="terminal-line">Sistema pronto para execução.</div>
+        </section>
+
+        <!-- Características -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-feather="cpu" style="color: var(--text-primary);"></i>
+                </div>
+                <div class="feature-title">Compatibilidade Universal</div>
+                <div class="feature-description">
+                    Detecta automaticamente o jogo atual e carrega funcionalidades 
+                    específicas sem necessidade de scripts separados para cada título.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-feather="download-cloud" style="color: var(--text-primary);"></i>
+                </div>
+                <div class="feature-title">Sistema de Auto-Atualização</div>
+                <div class="feature-description">
+                    Sistema de atualização em tempo real que garante que você sempre 
+                    tenha as últimas funcionalidades e correções de bugs disponíveis.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-feather="shield" style="color: var(--text-primary);"></i>
+                </div>
+                <div class="feature-title">Segurança Avançada</div>
+                <div class="feature-description">
+                    Código otimizado e testado para evitar detecções, com sistema 
+                    integrado de proteção anti-ban.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-feather="users" style="color: var(--text-primary);"></i>
+                </div>
+                <div class="feature-title">Comunidade Ativa</div>
+                <div class="feature-description">
+                    Suporte 24/7 no Discord com uma comunidade de mais de 50 mil usuários 
+                    ativos e desenvolvedores dedicados.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-feather="settings" style="color: var(--text-primary);"></i>
+                </div>
+                <div class="feature-title">Interface Intuitiva</div>
+                <div class="feature-description">
+                    Design moderno e fácil de usar, com configurações personalizáveis 
+                    para cada tipo de usuário.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-feather="zap" style="color: var(--text-primary);"></i>
+                </div>
+                <div class="feature-title">Performance Otimizada</div>
+                <div class="feature-description">
+                    Execução rápida e eficiente que não afeta a performance do jogo, 
+                    mantendo altas taxas de FPS.
+                </div>
+            </div>
+        </div>
+
+        <!-- Script Principal -->
+        <div class="script-section">
+            <div class="script-title">
+                <i data-feather="terminal"></i>
+                Script Universal
+            </div>
+            <div class="script-description">
+                Copie e execute o código abaixo no seu executor favorito para acessar 
+                todas as funcionalidades do <strong>Nexor Hub Universal</strong>
+            </div>
+            <div class="script-code" id="scriptCode">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NexorHub/Games/refs/heads/main/Universal/Scripts.lua"))()
+            </div>
+            <button class="copy-btn" onclick="copyScript(this)" id="copyButton">
+                <i data-feather="copy" class="icon"></i>
+                <span>Copiar Script</span>
+            </button>
+        </div>
+
+        <footer class="footer">
+            <div class="social-links">
+                <a href="#" class="social-link" title="Discord">
+                    <i data-feather="message-circle"></i>
+                </a>
+                <a href="#" class="social-link" title="GitHub">
+                    <i data-feather="github"></i>
+                </a>
+                <a href="#" class="social-link" title="YouTube">
+                    <i data-feather="play"></i>
+                </a>
+                <a href="#" class="social-link" title="Terminal">
+                    <i data-feather="terminal"></i>
+                </a>
+            </div>
+            <p>© 2024 Nexor Hub - Todos os direitos reservados.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                Desenvolvido para a comunidade Roblox
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme Management
+        let currentTheme = 'dark';
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'white');
+                themeIcon.setAttribute('data-feather', 'sun');
+                themeText.textContent = 'Claro';
+                currentTheme = 'white';
+            } else {
+                body.removeAttribute('data-theme');
+                themeIcon.setAttribute('data-feather', 'moon');
+                themeText.textContent = 'Escuro';
+                currentTheme = 'dark';
+            }
+            feather.replace();
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            initCodeLines();
+            animateStats();
+            hideLoading();
+        });
+
+        // Ocultar loading
+        function hideLoading() {
+            setTimeout(() => {
+                document.getElementById('loading').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                }, 500);
+            }, 1500);
+        }
+
+        // Criar linhas de código animadas
+        function initCodeLines() {
+            const codeContainer = document.getElementById('codeLines');
+            
+            function createCodeLine() {
+                const line = document.createElement('div');
+                line.className = 'code-line';
+                line.style.top = Math.random() * 100 + '%';
+                line.style.width = Math.random() * 300 + 100 + 'px';
+                line.style.animationDelay = Math.random() * 8 + 's';
+                
+                codeContainer.appendChild(line);
+                
+                setTimeout(() => {
+                    line.remove();
+                }, 8000);
+            }
+            
+            // Criar linhas periodicamente
+            setInterval(createCodeLine, 2000);
+            createCodeLine(); // Primeira linha imediatamente
+        }
+
+        // Animar estatísticas
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateNumber(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            stats.forEach(stat => observer.observe(stat));
+        }
+
+        function animateNumber(element) {
+            const target = parseInt(element.dataset.target);
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                if (element.dataset.target === "50") {
+                    element.textContent = String(Math.floor(current)).padStart(2, '0') + 'K+';
+                } else if (element.dataset.target === "99") {
+                    element.textContent = String(Math.floor(current)).padStart(2, '0') + '%';
+                } else if (element.dataset.target === "1800000") {
+                    element.textContent = (Math.floor(current / 100000) / 10).toFixed(1) + 'M';
+                } else {
+                    element.textContent = String(Math.floor(current)).padStart(3, '0');
+                }
+            }, 16);
+        }
+
+        // Copiar script
+        function copyScript(button) {
+            const scriptCode = document.getElementById('scriptCode').textContent.trim();
+            const buttonText = button.querySelector('span');
+            const buttonIcon = button.querySelector('.icon');
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(scriptCode).then(() => {
+                    // Animação de sucesso
+                    buttonIcon.setAttribute('data-feather', 'check');
+                    buttonText.textContent = 'Copiado!';
+                    
+                    // Efeito de ripple
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'var(--hover-color)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = '50%';
+                    ripple.style.top = '50%';
+                    ripple.style.width = '20px';
+                    ripple.style.height = '20px';
+                    ripple.style.marginLeft = '-10px';
+                    ripple.style.marginTop = '-10px';
+                    
+                    button.appendChild(ripple);
+                    
+                    feather.replace();
+                    
+                    setTimeout(() => {
+                        buttonIcon.setAttribute('data-feather', 'copy');
+                        buttonText.textContent = 'Copiar Script';
+                        ripple.remove();
+                        feather.replace();
+                    }, 2500);
+                });
+            } else {
+                // Fallback para navegadores mais antigos
+                const textArea = document.createElement('textarea');
+                textArea.value = scriptCode;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                buttonIcon.setAttribute('data-feather', 'check');
+                buttonText.textContent = 'Copiado!';
+                feather.replace();
+                
+                setTimeout(() => {
+                    buttonIcon.setAttribute('data-feather', 'copy');
+                    buttonText.textContent = 'Copiar Script';
+                    feather.replace();
+                }, 2000);
+            }
+        }
+
+        // Adicionar CSS para animação de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Efeito parallax no scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const codeLines = document.querySelector('.code-lines');
+            
+            if (codeLines) {
+                codeLines.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
